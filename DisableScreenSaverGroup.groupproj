@@ -1,0 +1,62 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{6DA8639B-246B-41FA-90EA-E1E40CEADADC}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="DisableScreenSaver.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="DisableScreenSaverTestProj.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DisableScreenSaver">
+        <MSBuild Projects="DisableScreenSaver.dproj"/>
+    </Target>
+    <Target Name="DisableScreenSaver:Clean">
+        <MSBuild Projects="DisableScreenSaver.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DisableScreenSaver:Make">
+        <MSBuild Projects="DisableScreenSaver.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DisableScreenSaverTestProj">
+        <MSBuild Projects="DisableScreenSaverTestProj.dproj"/>
+    </Target>
+    <Target Name="DisableScreenSaverTestProj:Clean">
+        <MSBuild Projects="DisableScreenSaverTestProj.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DisableScreenSaverTestProj:Make">
+        <MSBuild Projects="DisableScreenSaverTestProj.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DisableScreenSaver;DisableScreenSaverTestProj"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DisableScreenSaver:Clean;DisableScreenSaverTestProj:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DisableScreenSaver:Make;DisableScreenSaverTestProj:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+    <ItemGroup Condition="'$(BuildGroup)'=='Build all'">
+        <BuildGroupProject Include="DisableScreenSaver.dproj">
+            <ProjectGuid>{A2D478D1-3BB8-4E21-86BF-181F99C5D7F0}</ProjectGuid>
+            <Configurations>Debug;Release</Configurations>
+            <Platforms>Win32;Win64</Platforms>
+            <Enabled>True</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="DisableScreenSaverTestProj.dproj">
+            <ProjectGuid>{30BE8FB7-5865-4CDE-8698-6AE3E58A446C}</ProjectGuid>
+            <Configurations>Debug;Release</Configurations>
+            <Platforms>Win32;Win64</Platforms>
+            <Enabled>True</Enabled>
+        </BuildGroupProject>
+    </ItemGroup>
+</Project>
